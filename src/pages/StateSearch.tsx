@@ -1,9 +1,7 @@
 import useStates, { StateRow } from '../hooks/useStates'
 
 import DataTable from 'react-data-table-component'
-import { Navigate } from 'react-router-dom'
-import React from 'react'
-import { WithUserProps } from '../App'
+import { Link } from 'react-router-dom'
 
 const columns = [
     {
@@ -23,15 +21,9 @@ const columns = [
         selector: (row: StateRow) => row.slug,
     },
     {
-        name: 'Example API Endpoint',
+        name: 'College Concentrations',
         cell: (row: StateRow) => (
-            <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`https://datausa.io/api/data?Geography=${row.key}&Nativity=2&measure=Total%20Population,Total%20Population%20MOE%20Appx&drilldowns=Birthplace&properties=Country%20Code`}
-            >
-                Population Example
-            </a>
+            <Link to="/college" state={row}>College Concentrations</Link>
         ),
     },
 ]

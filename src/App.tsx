@@ -17,6 +17,30 @@ export interface WithUserProps {
 }
 
 function App() {
+
+    const [error, setError] = useState('');
+
+    async function logout() {
+        try {
+            const response = await fetch('http://localhost:4001/logout', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response)
+
+            if (response.ok) {
+                alert('User logged out');
+            } else {
+                const errorData = await response.json();
+                setError(errorData.message || 'An error occurred');
+            }
+        } catch (err) {
+            setError('Network error');
+        }
+    }
+
     return (
         <Router>
             <div className="App" style={{ margin: '1rem' }}>
